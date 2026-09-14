@@ -42,7 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       >{locale === 'he' ? 'דלגי לתוכן' : 'Skip to content'}</a
     >
     <header class="flex items-center justify-between px-6 py-5 md:px-10">
-      <a href={localizedPath(locale, '/')} class="logo-lockup block text-ink">
+      <a href={localizedPath(locale, '/')} class="logo-lockup block">
         <span class="hidden md:block" set:html={logoHorizontal} />
         <span class="block md:hidden" set:html={logoMark} />
       </a>

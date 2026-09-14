@@ -2,6 +2,9 @@
 import paths from '../../src/assets/brand/logo-paths.json';
 
 export const brand = {
+  // Original logo colours: dark brown line on pale pink paper.
+  line: '#3b2a21',
+  paper: '#fbf3f0',
   cream: '#f5f1e8',
   ink: '#1e1d1a',
   stone: '#b9aea1',

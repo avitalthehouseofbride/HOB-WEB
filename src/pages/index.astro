@@ -10,7 +10,7 @@ const copy = t(locale);
 
 <Base title={copy.brand} description={copy.intro}>
   <section class="px-6 pt-12 pb-16 md:px-10 md:pt-24 md:pb-24">
-    <div class="logo-draw mb-10 w-full max-w-md text-ink" set:html={logoMark} />
+    <div class="logo-draw mb-10 w-full max-w-md" set:html={logoMark} />
     <h1 class="max-w-3xl font-serif text-display leading-[1.05] font-light">{copy.tagline}</h1>
     <p class="mt-8 max-w-2xl text-lead">{copy.intro}</p>
   </section>

@@ -111,8 +111,8 @@ ${markGroup()}
 writeFileSync(
   'public/favicon.svg',
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="290 300 420 375">
-  <rect x="290" y="300" width="420" height="375" fill="#f5f1e8"/>
-  <g color="#1e1d1a">
+  <rect x="290" y="300" width="420" height="375" fill="#fbf3f0"/>
+  <g color="#3b2a21">
 ${markGroup().replace(/stroke-width="(\d+)"/g, (m, w) => `stroke-width="${Math.round(Number(w) * 2.2)}"`)}
   </g>
 </svg>

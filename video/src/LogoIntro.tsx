@@ -13,20 +13,15 @@ import '@fontsource-variable/heebo';
 import { evolvePath } from '@remotion/paths';
 import { brand, logo, markBox } from './brand';
 
-type Props = { tagline?: string };
-
 /** One continuous pen: the line draws first, then roof, chimney and knob, then the wordmark rises. */
-export const LogoIntro = ({ tagline = 'הבוקר של החתונה, במקום שנבנה בשבילו.' }: Props) => {
+export const LogoIntro = () => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
   // Hold the render until both brand fonts are in, so no frame shows a fallback face.
   const [handle] = useState(() => delayRender('brand fonts'));
   useEffect(() => {
-    Promise.all([
-      document.fonts.load(`400 72px ${brand.serif}`),
-      document.fonts.load(`300 30px ${brand.sans}`),
-    ]).then(
+    Promise.all([document.fonts.load(`400 72px ${brand.serif}`)]).then(
       () => continueRender(handle),
       () => continueRender(handle),
     );
@@ -45,14 +40,13 @@ export const LogoIntro = ({ tagline = 'הבוקר של החתונה, במקום 
   const knob = seg(2.9, 3.1);
 
   const textIn = seg(3.0, 3.8);
-  const tagIn = seg(3.5, 4.3);
 
   const portrait = height > width;
   const markWidth = portrait ? width * 0.78 : Math.min(width * 0.42, height * 0.9);
   const markHeight = (markWidth * markBox.h) / markBox.w;
 
   return (
-    <AbsoluteFill style={{ backgroundColor: brand.cream, color: brand.ink }}>
+    <AbsoluteFill style={{ backgroundColor: brand.paper, color: brand.line }}>
       <AbsoluteFill
         style={{
           justifyContent: 'center',
@@ -97,19 +91,6 @@ export const LogoIntro = ({ tagline = 'הבוקר של החתונה, במקום 
           }}
         >
           The House Of Brides
-        </div>
-        <div
-          dir="rtl"
-          style={{
-            fontFamily: brand.sans,
-            fontWeight: 300,
-            fontSize: portrait ? 34 : 30,
-            color: brand.stone,
-            opacity: tagIn,
-            transform: `translateY(${(1 - tagIn) * 16}px)`,
-          }}
-        >
-          {tagline}
         </div>
       </AbsoluteFill>
     </AbsoluteFill>
