@@ -4,7 +4,7 @@ import astro from 'eslint-plugin-astro';
 import * as astroParser from 'astro-eslint-parser';
 
 export default [
-  { ignores: ['dist/', '.astro/', '.vercel/', 'node_modules/', '.screenshots/'] },
+  { ignores: ['dist/', '.astro/', '.vercel/', 'node_modules/', '.screenshots/', 'video/'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...astro.configs.recommended,

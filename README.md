@@ -1,28 +1,25 @@
-# The House Of Brides
+# Brand video (Remotion)
 
-Website for two bridal getting-ready apartments in Israel, Netanya and Shoresh, under one brand.
+Renders the logo intro: the single-line mark draws itself, then the wordmark and tagline rise.
+Three compositions: `LogoIntro` (1920×1080), `LogoIntroSquare` (1080×1080), `LogoIntroStory` (1080×1920).
 
-Status: planning complete, code not started. Read [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) first.
+```bash
+cd video
+pnpm install
+pnpm studio                       # live preview in the browser (local machine)
+pnpm render                       # out/logo-intro.mp4 (H.264)
+pnpm render:square                # out/logo-intro-square.mp4
+pnpm render:story                 # out/logo-intro-story.mp4
+pnpm still                        # out/logo-intro.png, frame 120
+```
 
-## What the site does
+The logo geometry comes from `../src/assets/brand/logo-paths.json`, the same source the website uses,
+so the video and the site never drift apart. Timing lives in `src/LogoIntro.tsx`.
 
-- Hebrew-first (RTL) marketing site, English-ready under `/en/`.
-- One page per apartment: facts, curated gallery, how the day looks, packages, FAQ, location.
-- A public read-only availability calendar per apartment. Picking a date prefills the inquiry form and a WhatsApp message. No booking, no payments on the site.
-- Contact page and inquiry form.
-- A private admin area for the owner: block/unblock dates and track inquiries.
+In the cloud sandbox Chrome cannot be downloaded; set
+`REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`
+before rendering. On a normal machine Remotion finds or downloads its own headless shell.
 
-## Stack (decided)
-
-Astro + React islands + Tailwind CSS v4, hosted on Vercel, data and auth in Supabase (Postgres, eu-central-1).
-
-## Docs
-
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): stack, structure, data model, security, routes, verification loop, roadmap.
-- [docs/research/design-inspiration.md](docs/research/design-inspiration.md): sites to study, patterns we commit to, type pairings.
-- [docs/research/competitor-scan-il.md](docs/research/competitor-scan-il.md): Israeli competitors, what they show and hide, how we differentiate.
-- [docs/research/planning-research-he.docx](docs/research/planning-research-he.docx): the original Hebrew planning study.
-
-## Working in this repo
-
-See [CLAUDE.md](CLAUDE.md) for branch, commit and review conventions.
+The website does not embed these videos. On the site the same drawing runs as a tiny CSS animation
+(`.logo-draw` in `src/styles/global.css`), which respects reduced-motion settings. The MP4s are for
+Instagram, reels, WhatsApp status and presentations.

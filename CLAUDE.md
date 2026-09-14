@@ -31,6 +31,12 @@ Marketing site for two bridal getting-ready apartments (Netanya, Shoresh). Hebre
 
 Migrations are SQL files in `supabase/migrations/` and are the source of truth. Apply with the Supabase MCP `apply_migration`, then run `get_advisors` and regenerate `src/lib/db/database.types.ts`. After launch, test every migration inside `begin; ... rollback;` first.
 
+## Brand assets
+
+- Never edit the SVGs in `src/assets/brand/` by hand; change `logo-paths.json` or `scripts/build-logo.mjs` and regenerate.
+- The header uses `logo-horizontal.svg`, the home hero the animated `logo-mark.svg` (`.logo-draw`), the favicon is generated from the mark.
+- `video/` is a separate pnpm project (Remotion). It is excluded from the site's lint and typecheck. Render outputs in `video/out/` are never committed.
+
 ## Design contract
 
 Filled in after the design canvas is approved (fonts, palette, spacing scale, section order). Until then, follow the patterns in `docs/research/design-inspiration.md`.

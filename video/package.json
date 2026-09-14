@@ -1,0 +1,27 @@
+{
+  "name": "hob-video",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Brand intro animation for The House Of Brides, rendered with Remotion.",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render LogoIntro out/logo-intro.mp4",
+    "render:story": "remotion render LogoIntroStory out/logo-intro-story.mp4",
+    "compositions": "remotion compositions",
+    "render:square": "remotion render LogoIntroSquare out/logo-intro-square.mp4",
+    "still": "remotion still LogoIntro out/logo-intro.png --frame=120"
+  },
+  "dependencies": {
+    "@fontsource-variable/frank-ruhl-libre": "^5.3.0",
+    "@fontsource-variable/heebo": "^5.3.0",
+    "@remotion/cli": "4.0.524",
+    "@remotion/paths": "4.0.524",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "4.0.524"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "~5.9.3"
+  }
+}

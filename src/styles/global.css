@@ -42,7 +42,47 @@ body {
   min-height: 100dvh;
 }
 
+/* Brand */
+.logo-lockup svg {
+  height: 2.25rem;
+  width: auto;
+  display: block;
+}
+.logo-draw svg {
+  width: 100%;
+  height: auto;
+}
+/* The mark draws itself once: line, then roof, chimney and knob. Paths carry pathLength="1". */
+.logo-draw path,
+.logo-draw circle {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: logo-draw 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.logo-draw #roof {
+  animation-delay: 1.7s;
+  animation-duration: 0.7s;
+}
+.logo-draw #chimney {
+  animation-delay: 2.3s;
+  animation-duration: 0.4s;
+}
+.logo-draw #knob {
+  animation-delay: 2.6s;
+  animation-duration: 0.3s;
+}
+@keyframes logo-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .logo-draw path,
+  .logo-draw circle {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
   *,
   *::before,
   *::after {

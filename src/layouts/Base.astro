@@ -3,6 +3,8 @@ import '@/styles/global.css';
 import { dirFor } from '@/i18n/config';
 import { getLocaleFromUrl, localizedPath, t } from '@/i18n';
 import type { PropertySlug } from '@/content/types';
+import logoHorizontal from '@/assets/brand/logo-horizontal.svg?raw';
+import logoMark from '@/assets/brand/logo-mark.svg?raw';
 
 interface Props {
   title: string;
@@ -40,7 +42,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       >{locale === 'he' ? 'דלגי לתוכן' : 'Skip to content'}</a
     >
     <header class="flex items-center justify-between px-6 py-5 md:px-10">
-      <a href={localizedPath(locale, '/')} class="font-serif text-lg tracking-wide">{copy.brand}</a>
+      <a href={localizedPath(locale, '/')} class="logo-lockup block text-ink">
+        <span class="hidden md:block" set:html={logoHorizontal} />
+        <span class="block md:hidden" set:html={logoMark} />
+      </a>
       <nav
         aria-label={locale === 'he' ? 'ניווט ראשי' : 'Main navigation'}
         class="flex items-center gap-6 text-sm"

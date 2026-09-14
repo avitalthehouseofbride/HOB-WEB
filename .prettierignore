@@ -4,3 +4,7 @@ dist
 node_modules
 pnpm-lock.yaml
 docs/research/*.docx
+src/assets/brand/*.svg
+video/out
+video/pnpm-lock.yaml
+video/node_modules
