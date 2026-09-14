@@ -1,0 +1,67 @@
+---
+import '@/styles/global.css';
+import { dirFor } from '@/i18n/config';
+import { getLocaleFromUrl, localizedPath, t } from '@/i18n';
+import type { PropertySlug } from '@/content/types';
+import logoHorizontal from '@/assets/brand/logo-horizontal.svg?raw';
+import logoMark from '@/assets/brand/logo-mark.svg?raw';
+
+interface Props {
+  title: string;
+  description: string;
+  property?: PropertySlug;
+}
+
+const { title, description, property } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const dir = dirFor(locale);
+const copy = t(locale);
+const otherLocale = locale === 'he' ? 'en' : 'he';
+const switchHref = localizedPath(otherLocale, Astro.url.pathname);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={locale} dir={dir} data-property={property}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale === 'he' ? 'he_IL' : 'en_US'} />
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-cream"
+      >{locale === 'he' ? 'דלגי לתוכן' : 'Skip to content'}</a
+    >
+    <header class="flex items-center justify-between px-6 py-5 md:px-10">
+      <a href={localizedPath(locale, '/')} class="logo-lockup block">
+        <span class="hidden md:block" set:html={logoHorizontal} />
+        <span class="block md:hidden" set:html={logoMark} />
+      </a>
+      <nav
+        aria-label={locale === 'he' ? 'ניווט ראשי' : 'Main navigation'}
+        class="flex items-center gap-6 text-sm"
+      >
+        <a href={localizedPath(locale, '/netanya')} class="hover:underline">{copy.nav.netanya}</a>
+        <a href={localizedPath(locale, '/shoresh')} class="hover:underline">{copy.nav.shoresh}</a>
+        <a href={switchHref} lang={otherLocale} class="text-stone hover:text-ink"
+          >{copy.footer.language}</a
+        >
+      </nav>
+    </header>
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <footer class="px-6 py-8 text-sm text-stone md:px-10">
+      <p>© <bdi>{new Date().getFullYear()}</bdi> {copy.brand} · {copy.footer.rights}</p>
+    </footer>
+  </body>
+</html>

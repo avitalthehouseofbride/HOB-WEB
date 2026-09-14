@@ -1,0 +1,23 @@
+---
+import type { PropertySlug } from '@/content/types';
+
+interface Props {
+  slug: PropertySlug;
+  name: string;
+  line: string;
+  href: string;
+  cta: string;
+}
+const { slug, name, line, href, cta } = Astro.props;
+---
+
+<a
+  href={href}
+  data-property={slug}
+  class="group block border border-stone-soft bg-white/40 p-6 transition-colors hover:border-[var(--accent)] md:p-8"
+>
+  <div class="mb-6 aspect-[4/5] w-full bg-stone-soft" aria-hidden="true"></div>
+  <h2 class="font-serif text-title leading-tight" style="color: var(--accent)">{name}</h2>
+  <p class="mt-2 text-lead">{line}</p>
+  <span class="mt-6 inline-block text-sm underline-offset-4 group-hover:underline">{cta} →</span>
+</a>
